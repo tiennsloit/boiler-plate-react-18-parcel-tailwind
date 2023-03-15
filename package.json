@@ -1,0 +1,33 @@
+{
+  "name": "vpn-center",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "concurrently \"yarn css\" \"yarn parcel\"",
+    "postbuild": "node scripts/generate-index",
+    "css": "npx tailwindcss -i ./src/assets/scss/style.scss -o ./src/assets/css/built/style.css --watch",
+    "parcel-dev": "parcel src/index.html",
+    "parcel": "tsc --noEmit && parcel build src/index.html --public-url ./ --no-source-maps",
+    "start": "concurrently \"yarn css\" \"yarn parcel-dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react-router-dom": "^5.3.3",
+    "concurrently": "^7.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "parcel-bundler": "^1.12.5",
+    "rimraf": "^4.4.0",
+    "tailwindcss": "^3.2.7",
+    "typescript": "^4.9.5"
+  }
+}
